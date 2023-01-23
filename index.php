@@ -9,7 +9,7 @@ if (empty($_SESSION['user_id'])) {
 }
 
 if(!empty($_POST['exit'])) {
-    unset($_SESSION['id']);
+    unset($_SESSION['user_id']);
     header("location: /login.php");
 }
 
@@ -17,8 +17,7 @@ if(!empty($_POST['clear'])) {
    $cleaning = new Comment();
    $cleaning -> userId = $_SESSION['user_id'];
    $cleaning -> clean();
-//    header("location: /index.php");
-   header("location: /login.php");
+   header("location: /index.php");
 }
 
 $comment = new Comment();
@@ -42,19 +41,15 @@ $comments = $comment -> findAll();
         <h1>Страница с комментариями</h1>
     </div>
     <div>
-        <h1>Добавьте свой комментарий</h1>
         <form method="post">
             <div>
-                <p>Комментарий</p>
-                <div>
-                    <textarea name="text"></textarea>
-                </div>
+                <textarea name="text" placeholder="Напишите Ваш комментарий" require=""></textarea>
             </div>
             <div>
                 <br>
-                <p><input type="submit" name="save" value="Сохранить"></p>
-                <p><input type="submit" name="clear" value="Удалить"></p>
-                <p><input type="submit" name="exit" value="Выйти"></p>
+                <div><input type="submit" name="save" value="Сохранить"></div>
+                <div><input type="submit" name="clear" value="Удалить"></div>
+                <div><input type="submit" name="exit" value="Выйти"></div>
             </div>
         </form>
     </div>

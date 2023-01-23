@@ -6,6 +6,11 @@ if(!empty($_SESSION['user_id'])) {
     header("location: /index.php");
 }
 
+if (!empty($_POST['login'])) {
+    unset($_SESSION['user_id']);
+    header("location: /login.php");
+}
+
 $errors = [];
 if(!empty($_POST['submit'])) {
     $validator = new Validator(new DB());
@@ -15,7 +20,7 @@ if(!empty($_POST['submit'])) {
     $validator -> checkMaxLen('user_name', $_POST['user_name'], 'users', 'username');
     $validator -> checkMaxLen('first_name', $_POST['first_name'], 'users', 'first_name');
     $validator -> checkMaxLen('last_name', $_POST['last_name'], 'users', 'last_name');
-    $validator -> checkMinLen('password', $_POST['password'], 6);
+    $validator -> checkMinLen('password', $_POST['password'], 4);
     $validator -> checkMatch('password', $_POST['password'], 'confirm_password', $_POST['confirm_password']);
     $errors = $validator -> errors;
     if (empty($errors)) {
@@ -74,7 +79,9 @@ if(!empty($_POST['submit'])) {
        </div>
        <div>
             <br>
-            <div><button type="submit" name="submit" value="Зарегистрироваться">Зарегистрироваться</button></div>
+            <div><input type="submit" name="submit" value="Зарегистрироваться"></div>
+            <br>
+            <div><input type="submit" name="login" value="Авторизация"></div>
        </div>
    </form>
 </div>

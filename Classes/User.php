@@ -23,6 +23,7 @@ class User extends DB
         $this -> id = $this -> conn -> lastInsertId();
         return $this -> id;
     }
+
     public function find($id)
     {
         $stmt = $this -> conn -> prepare('SELECT * FROM users WHERE id = :id');
@@ -41,8 +42,8 @@ class User extends DB
     public function checkLogin($userName, $password)
     {
         $stmt = $this -> conn -> prepare('SELECT * FROM  users
-                                        WHERE (username = :username or email = :username)
-                                        and password = :password');
+                                          WHERE (username = :username or email = :username)
+                                          and password = :password');
         $stmt -> execute(['username' => $userName, 'password' => $password]);
         $user = $stmt -> fetch(PDO::FETCH_LAZY);
         if(!empty($user)) {

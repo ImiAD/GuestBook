@@ -10,7 +10,7 @@ if (!empty($_POST['goRegist'])) {
 }
 
 if(!empty($_SESSION['user_id'])) {
-    //header("location: /index.php");
+    header("location: /index.php");
 }
 
 $errors = [];
@@ -58,13 +58,13 @@ if(!empty($_POST)) {
             <div>
                 <p>Ваш логин или Email:</p>
                 <div>
-                    <input type="text" name="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
+                    <input type="text" name="user_name" require="" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
                 </div>
             </div>
             <div>
                 <p>Пароль:</p>
                 <div>
-                    <input type="password" name="password" value="">
+                    <input type="password" name="password" require="" value="">
                 </div>
             </div>
             <div>
@@ -73,7 +73,7 @@ if(!empty($_POST)) {
             </div>
             <div>
                 <br>
-                <input type="submit" name="goRegist" value="Зарегестрироваться">
+                <div><input type="submit" name="goRegist" value="Регстрация"></div>
             </div>
         </form>
     </div>

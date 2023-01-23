@@ -13,6 +13,14 @@ if(!empty($_POST['exit'])) {
     header("location: /login.php");
 }
 
+if(!empty($_POST['clear'])) {
+   $cleaning = new Comment();
+   $cleaning -> userId = $_SESSION['user_id'];
+   $cleaning -> clean();
+//    header("location: /index.php");
+   header("location: /login.php");
+}
+
 $comment = new Comment();
 if (!empty($_POST['text'])) {
     $comment -> text = $_POST['text'];
@@ -45,7 +53,8 @@ $comments = $comment -> findAll();
             <div>
                 <br>
                 <p><input type="submit" name="save" value="Сохранить"></p>
-                <p><input name="exit" type="submit" value="Выйти"></p>
+                <p><input type="submit" name="clear" value="Удалить"></p>
+                <p><input type="submit" name="exit" value="Выйти"></p>
             </div>
         </form>
     </div>

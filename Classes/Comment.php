@@ -30,4 +30,10 @@ class Comment extends DB
         }
         return $comments;
     }
+
+    public function clean()
+    {
+        $stmt = $this -> conn -> prepare('DELETE FROM comments WHERE user_id  = :user_id');
+        $stmt -> execute(['user_id' => $this -> userId]);
+    }
 }

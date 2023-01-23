@@ -57,4 +57,23 @@ class User extends DB
         else return false;
     }
 
+    public function getUserName($userName)
+    {
+        $stmt = $this -> conn -> prepare('SELECT username FROM users WHERE username = :username');
+        $stmt -> execute(['username' => $userName]);
+        $user = $stmt -> fetch(PDO::FETCH_LAZY);
+        if (!empty($user -> username)) {
+            return $user -> username;
+        } else return false;
+    }
+
+    public function getEmail($email)
+    {
+        $stmt = $this -> conn -> prepare('SELECT email FROM  users WHERE email = :email');
+        $stmt -> execute(['email' => $email]);
+        $user = $stmt -> fetch(PDO::FETCH_LAZY);
+        if (!empty($user -> email)) {
+            return $user -> email;
+        } else return false;
+    }
 }

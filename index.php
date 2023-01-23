@@ -4,6 +4,8 @@ session_start();
 
 require_once ("config.php");
 
+$errors = [];
+
 if (empty($_SESSION['user_id'])) {
     header('location: /login.php');
 }
@@ -17,7 +19,12 @@ if(!empty($_POST['clear'])) {
    $cleaning = new Comment();
    $cleaning -> userId = $_SESSION['user_id'];
    $cleaning -> clean();
-   header("location: /index.php");
+}
+
+if (!empty($_POST['save'])){
+    if (empty($_POST['text'])) {
+        $errors[] = 'Введите комментарий.';
+    }
 }
 
 $comment = new Comment();
@@ -40,6 +47,11 @@ $comments = $comment -> findAll();
     <div>
         <h1>Страница с комментариями</h1>
     </div>
+    <?php if(!empty($errors)):?>
+            <?php foreach ($errors as $error): ?>
+                    <?= $error; ?>
+            <?php endforeach; ?>
+        <?php endif;?>    
     <div>
         <form method="post">
             <div>
@@ -48,7 +60,9 @@ $comments = $comment -> findAll();
             <div>
                 <br>
                 <div><input type="submit" name="save" value="Сохранить"></div>
+                <br>
                 <div><input type="submit" name="clear" value="Удалить"></div>
+                <br>
                 <div><input type="submit" name="exit" value="Выйти"></div>
             </div>
         </form>
@@ -58,7 +72,7 @@ $comments = $comment -> findAll();
         <?php foreach ($comments as $comment): ?>
         <p <?php if ($comment['user_id'] == $_SESSION['user_id']) echo 'style="font-weight: bold;"'; ?>>
             <?= $comment['text']; ?>
-            <span>(<?= $comment['created_at']; ?>)</span></p>
+            <span>( <?= $comment['created_at']; ?> )</span></p>
         <?php endforeach; ?>
     </div>
 </body>

@@ -39,7 +39,7 @@ $comments = $comment -> findAll();
             </div>
             <div>
                 <br>
-                <button type="submit" name="save">Сохранить</button>
+                <button type="submit" name="save" value="Сохранить">Сохранить</button>
             </div>
         </form>
     </div>

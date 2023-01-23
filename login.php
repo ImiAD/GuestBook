@@ -4,14 +4,17 @@ session_start();
 
 require_once ('config.php');
 
-if(!empty($_SESSION['user_id']))
-{
-    header("location: /index.php");
+if (!empty($_POST['goRegist'])) {
+    unset($_SESSION['user_id']);
+    header("location: /registration.php");
+}
+
+if(!empty($_SESSION['user_id'])) {
+    //header("location: /index.php");
 }
 
 $errors = [];
-if(!empty($_POST))
-{
+if(!empty($_POST)) {
     if (empty($_POST['user_name']))
     {
         $errors[]='Введите, пожалуйста, Ваш логин или Email!';
@@ -25,7 +28,7 @@ if(!empty($_POST))
         $user = new User();
         $user = $user -> checkLogin($_POST['user_name'], sha1($_POST['password'] . SALT));
         if (!empty($user -> id)) {
-            $_SESSION['id'] = $user -> id;
+            $_SESSION['user_id'] = $user -> id;
             header('location: /index.php');
         } else {
             $errors[] = 'Введение Вами логин или пароль не верный!';
@@ -66,7 +69,11 @@ if(!empty($_POST))
             </div>
             <div>
                 <br>
-                <button type="submit" name="login">Войти</button>
+                <input type="submit" name="login" value="Войти">
+            </div>
+            <div>
+                <br>
+                <input type="submit" name="goRegist" value="Зарегестрироваться">
             </div>
         </form>
     </div>

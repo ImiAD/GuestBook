@@ -12,7 +12,7 @@ class User extends DB
     public function save()
     {
         $stmt = $this -> conn -> prepare('INSERT INTO users(`username`, `email`, `password`, `first_name`, `last_name`)
-                                        VALUES (:username, :email, :password, :first_name, :last_name)');
+                                          VALUES (:username, :email, :password, :first_name, :last_name)');
         $stmt->execute([
             'username' => $this -> userName,
             'email' => $this -> email,
@@ -26,11 +26,11 @@ class User extends DB
     public function find($id)
     {
         $stmt = $this -> conn -> prepare('SELECT * FROM users WHERE id = :id');
-        $stmt -> execute(['id' => $id]);
+        $stmt -> execute(['id' => $this -> id]);
         $user = $stmt -> fetch(PDO::FETCH_LAZY);
         if(!empty($user)) {
             $this -> id = $id;
-            $this -> userName = $user -> username;
+            $this -> userName = $user -> user_name;
             $this -> email = $user -> email;
             $this -> firstName = $user -> first_name;
             $this -> lastName = $user -> last_name;
@@ -40,12 +40,14 @@ class User extends DB
 
     public function checkLogin($userName, $password)
     {
-        $stmt = $this -> conn -> prepare('SELECT * FROM  users WHERE (username = :username or email = :username) and password = :password');
+        $stmt = $this -> conn -> prepare('SELECT * FROM  users
+                                        WHERE (username = :username or email = :username)
+                                        and password = :password');
         $stmt -> execute(['username' => $userName, 'password' => $password]);
         $user = $stmt -> fetch(PDO::FETCH_LAZY);
         if(!empty($user)) {
             $this -> id = $user -> id;
-            $this -> userName = $user -> username;
+            $this -> userName = $user -> user_name;
             $this -> email = $user -> email;
             $this -> firstName = $user -> first_name;
             $this -> lastName = $user -> last_name;

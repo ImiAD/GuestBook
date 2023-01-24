@@ -31,6 +31,7 @@ if(!empty($_POST['submit'])) {
         $user->firstName = $_POST['first_name'];
         $user->lastName = $_POST['last_name'];
         $user->ip = $_SERVER['SERVER_ADDR'];
+        $user->browser = $_SERVER['HTTP_USER_AGENT'];
         $user->save();
         header('location: /login.php');  
     }

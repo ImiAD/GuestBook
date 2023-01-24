@@ -8,13 +8,13 @@ class User extends DB
     public $email;
     public $firstName;
     public $lastName;
-
     public $ip;
+    public $browser;
 
     public function save()
     {
-        $stmt = $this->conn->prepare('INSERT INTO users(`username`, `email`, `password`, `first_name`, `last_name`, `ip`)
-                                            VALUES (:username, :email, :password, :first_name, :last_name, :ip)');
+        $stmt = $this->conn->prepare('INSERT INTO users(`username`, `email`, `password`, `first_name`, `last_name`, `ip`, `browser`)
+                                            VALUES (:username, :email, :password, :first_name, :last_name, :ip, :browser)');
         $stmt->execute([
             'username' => $this->userName,
             'email' => $this->email,
@@ -22,6 +22,7 @@ class User extends DB
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'ip' => $this->ip,
+            'browser' => $this->browser,
         ]);
         $this->id = $this->conn->lastInsertId();
         return $this->id;

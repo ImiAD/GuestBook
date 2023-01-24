@@ -47,35 +47,35 @@ if(!empty($_POST['submit'])) {
 <body>
 <h1>Страница регистрации</h1>
 <div>
-   <form method="post">
-        <div>
-            <?php foreach ($errors as $error): ?>
-                <p><?= $error; ?></p>
+    <div>
+        <?php foreach ($errors as $error): ?>
+            <p><?= $error; ?></p>
             <?php endforeach; ?>
         </div>
+   <form method="post">
        <div>
            <p>Логин:</p>
-           <input type="text" name="user_name" require="" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
+           <input type="text" name="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
        </div>
        <div>
            <p>E-mail:</p>
-           <input type="email" name="email" require="" value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>">
+           <input type="email" name="email" value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>">
        </div>
        <div>
            <p>Имя:</p>
-           <input type="text" name="first_name" require="" value="<?= (!empty($_POST['first_name']) ? $_POST['first_name']: ''); ?>">
+           <input type="text" name="first_name" value="<?= (!empty($_POST['first_name']) ? $_POST['first_name']: ''); ?>">
        </div>
        <div>
            <p>Фамилия:</p>
-           <input type="text" name="last_name" require="" value="<?= (!empty($_POST['last_name']) ? $_POST['last_name']: ''); ?>">
+           <input type="text" name="last_name" value="<?= (!empty($_POST['last_name']) ? $_POST['last_name']: ''); ?>">
        </div>
        <div>
            <p>Пароль:</p>
-           <input type="password" name="password" require="" value="">
+           <input type="password" name="password" value="">
        </div>
        <div>
            <p>Повторите пароль:</p>
-           <input type="password" name="confirm_password" require="" value="">
+           <input type="password" name="confirm_password" value="">
        </div>
        <div>
             <br>
@@ -85,5 +85,6 @@ if(!empty($_POST['submit'])) {
        </div>
    </form>
 </div>
+<script type="text/javascript" src="/js/check.js"></script>
 </body>
 </html>

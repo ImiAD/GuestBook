@@ -56,7 +56,7 @@ if(!empty($_POST)) {
     <div>
         <form method="post">
             <div>
-                <p>Ваш логин или Email:</p>
+                <p>Введите Ваш логин или Email:</p>
                 <div>
                     <input type="text" name="user_name" require="" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
                 </div>

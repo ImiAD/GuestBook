@@ -35,7 +35,7 @@ class Validator
         $name = ucfirst(str_replace("_", " ", $name));
         $maxLen = $this -> _db -> getMaxLen($table, $column);
         if(strlen($value) > $maxLen) {
-            return $this -> errors[] = $name . "слишком много символов" . $maxLen . " максимальная длинна!";
+            return $this -> errors[] = $name . " слишком много символов" . $maxLen . " максимальная длинна!";
         } else {
             return 0;
         }

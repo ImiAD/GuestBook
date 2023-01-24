@@ -9,16 +9,19 @@ class User extends DB
     public $firstName;
     public $lastName;
 
+    public $ip;
+
     public function save()
     {
-        $stmt = $this->conn->prepare('INSERT INTO users(`username`, `email`, `password`, `first_name`, `last_name`)
-                                            VALUES (:username, :email, :password, :first_name, :last_name)');
+        $stmt = $this->conn->prepare('INSERT INTO users(`username`, `email`, `password`, `first_name`, `last_name`, `ip`)
+                                            VALUES (:username, :email, :password, :first_name, :last_name, :ip)');
         $stmt->execute([
             'username' => $this->userName,
             'email' => $this->email,
             'password' => $this->password,
             'first_name' => $this->firstName,
-            'last_name' => $this->lastName
+            'last_name' => $this->lastName,
+            'ip' => $this->ip,
         ]);
         $this->id = $this->conn->lastInsertId();
         return $this->id;

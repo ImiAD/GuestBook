@@ -30,6 +30,7 @@ if(!empty($_POST['submit'])) {
         $user->password = sha1($_POST['password'] . SALT);
         $user->firstName = $_POST['first_name'];
         $user->lastName = $_POST['last_name'];
+        $user->ip = $_SERVER['SERVER_ADDR'];
         $user->save();
         header('location: /login.php');  
     }
@@ -55,29 +56,29 @@ if(!empty($_POST['submit'])) {
    <form method="post">
        <div>
            <p>Логин:</p>
-           <input type="text" name="user_name" id="user_name" required value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
+           <input type="text" name="user_name" id="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
            <span id="username_error"></span>
        </div>
        <div>
            <p>E-mail:</p>
-           <input type="email" name="email" id="email" required value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>">
+           <input type="email" name="email" id="email" value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>">
            <span id="email_error"></span>
        </div>
        <div>
            <p>Имя:</p>
-           <input type="text" name="first_name" required value="<?= (!empty($_POST['first_name']) ? $_POST['first_name']: ''); ?>">
+           <input type="text" name="first_name" value="<?= (!empty($_POST['first_name']) ? $_POST['first_name']: ''); ?>">
        </div>
        <div>
            <p>Фамилия:</p>
-           <input type="text" name="last_name" required value="<?= (!empty($_POST['last_name']) ? $_POST['last_name']: ''); ?>">
+           <input type="text" name="last_name" value="<?= (!empty($_POST['last_name']) ? $_POST['last_name']: ''); ?>">
        </div>
        <div>
            <p>Пароль:</p>
-           <input type="password" name="password" required value="">
+           <input type="password" name="password" value="">
        </div>
        <div>
            <p>Повторите пароль:</p>
-           <input type="password" name="confirm_password" required value="">
+           <input type="password" name="confirm_password" value="">
        </div>
        <div>
             <br>

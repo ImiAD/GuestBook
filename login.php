@@ -55,13 +55,13 @@ if(!empty($_POST)) {
             <div>
                 <p>Введите Ваш логин или Email:</p>
                 <div>
-                    <input type="text" name="user_name" required value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
+                    <input type="text" name="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
                 </div>
             </div>
             <div>
                 <p>Пароль:</p>
                 <div>
-                    <input type="password" name="password" required value="">
+                    <input type="password" name="password" value="">
                 </div>
             </div>
             <div>

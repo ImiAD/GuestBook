@@ -31,7 +31,7 @@ if(!empty($_POST)) {
             $_SESSION['user_id'] = $user -> id;
             header('location: /index.php');
         } else {
-            $errors[] = 'Введение Вами логин или пароль не верный!';
+            $errors[] = 'Введеннные Вами логин или пароль не верные!';
         }
     }
 }
@@ -58,13 +58,13 @@ if(!empty($_POST)) {
             <div>
                 <p>Введите Ваш логин или Email:</p>
                 <div>
-                    <input type="text" name="user_name" require="" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
+                    <input type="text" name="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
                 </div>
             </div>
             <div>
                 <p>Пароль:</p>
                 <div>
-                    <input type="password" name="password" require="" value="">
+                    <input type="password" name="password" value="">
                 </div>
             </div>
             <div>

@@ -15,7 +15,7 @@ if(!empty($cmd) && !empty($value))
             if(!$isAvalible) {
                 $response = ['success' => 1];
             } else {
-                $response = ['success' => 0, 'error' => $validator -> errors];
+                $response = ['success' => 0, 'error' => $validator->errors];
             }
             break;
         case "check_email":
@@ -23,7 +23,7 @@ if(!empty($cmd) && !empty($value))
             if(!$isAvalible) {
                 $response = ['success' => 1];
             } else {
-                $response = ['success' => 0, 'error' => $validator -> errors];
+                $response = ['success' => 0, 'error' => $validator->errors];
             }
             break;
         default:

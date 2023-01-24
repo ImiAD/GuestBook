@@ -10,16 +10,6 @@ class Validator
        $this->_db = $db;
     }
 
-    public function checkEmpty($name, $value)
-    {
-        $name = ucfirst(str_replace("_", " ", $name));
-        if (empty($value)) {
-            return $this->errors[] = "Заполните поле ".$name;
-        } else { 
-            return 0;
-        }
-    }
-
     public function checkMatch($name1, $value1, $name2, $value2)
     {
         $name1 = ucfirst(str_replace("_", " ", $name1));

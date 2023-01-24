@@ -29,11 +29,29 @@ if (!empty($_POST['save'])){
 
 $comment = new Comment();
 if (!empty($_POST['text'])) {
-    $comment -> text = $_POST['text'];
-    $comment -> userId = $_SESSION['user_id'];
-    $comment -> save();
+    $comment->text = $_POST['text'];
+    $comment->userId = $_SESSION['user_id'];
+    $comment->save();
 }
-$comments = $comment -> findAll();
+$comments = $comment->findAll();
+
+$_POST['page'] = (int)$_POST['page'];
+$pageCount = (new Comment())->lenPage();
+if(empty($_POST['page'] )) {
+    $_POST['page'] = 1;
+}
+if (!empty($_POST['end'])) {
+    $_POST['page'] = (int)$pageCount;
+}
+if (!empty($_POST['beginning'])) {
+    $_POST['page'] = 1;
+}
+
+if(empty($_POST['page'])) {
+    $_POST['page'] = 1;
+}
+
+$comments = (new Comment())->pagin($_POST['page']);
 
 ?>
 
@@ -55,7 +73,7 @@ $comments = $comment -> findAll();
     <div>
         <form method="post">
             <div>
-                <textarea name="text" placeholder="Напишите Ваш комментарий" require=""></textarea>
+                <textarea name="text" placeholder="Напишите Ваш комментарий" required></textarea>
             </div>
             <div>
                 <br>
@@ -74,6 +92,15 @@ $comments = $comment -> findAll();
             <?= $comment['text']; ?>
             <span>( <?= $comment['created_at']; ?> )</span></p>
         <?php endforeach; ?>
+        <form method="post">
+            <div  style="display: flex; justify-content: space-evenly;">
+                <p><input name="beginning" type="submit" class="btn btn-info btn-block" style="width: 50px;" value="«"></p>
+                <?php for ($i = 1; $i<=$pageCount; $i++): ?>
+                    <?php echo"<p><input name=\"page\" type=\"submit\" value=\"$i\"></p>";?>
+                <?php endfor ?>
+                <p><input name="end" type="submit" class="btn btn-info btn-block" style="width: 50px;" value="»"></p>
+            </div>
+        </form>
     </div>
 </body>
 </html>

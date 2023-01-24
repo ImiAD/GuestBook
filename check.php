@@ -11,19 +11,19 @@ if(!empty($cmd) && !empty($value))
     switch ($cmd)
     {
         case 'check_user_name':
-            $isAvalible = $validator -> isUsernameAvailable($value);
+            $isAvalible = $validator->isUsernameAvailable($value);
             if(!$isAvalible) {
                 $response = ['success' => 1];
             } else {
-                $response = ['success' => 0, 'error' => $validator -> errors];
+                $response = ['success' => 0, 'error' => $validator->errors];
             }
             break;
         case "check_email":
-            $isAvalible = $validator -> isEmailAvailable($value);
+            $isAvalible = $validator->isEmailAvailable($value);
             if(!$isAvalible) {
                 $response = ['success' => 1];
             } else {
-                $response = ['success' => 0, 'error' => $validator -> errors];
+                $response = ['success' => 0, 'error' => $validator->errors];
             }
             break;
         default:

@@ -15,22 +15,23 @@ $errors = [];
 if(!empty($_POST['submit'])) {
     $validator = new Validator(new DB());
     foreach ($_POST as $key => $value) {
-        $validator -> checkEmpty($key, $value);
+        $validator->checkEmpty($key, $value);
     }
-    $validator -> checkMaxLen('user_name', $_POST['user_name'], 'users', 'username');
-    $validator -> checkMaxLen('first_name', $_POST['first_name'], 'users', 'first_name');
-    $validator -> checkMaxLen('last_name', $_POST['last_name'], 'users', 'last_name');
-    $validator -> checkMinLen('password', $_POST['password'], 4);
-    $validator -> checkMatch('password', $_POST['password'], 'confirm_password', $_POST['confirm_password']);
-    $errors = $validator -> errors;
+    $validator->checkMaxLen('user_name', $_POST['user_name'], 'users', 'username');
+    $validator->checkMaxLen('first_name', $_POST['first_name'], 'users', 'first_name');
+    $validator->checkMaxLen('last_name', $_POST['last_name'], 'users', 'last_name');
+    $validator->checkMinLen('password', $_POST['password'], MINPASSWORD);
+    $validator->checkMatch('password', $_POST['password'], 'confirm_password', $_POST['confirm_password']);
+    $errors = $validator->errors;
     if (empty($errors)) {
         $user = new User();
-        $user -> userName = $_POST['user_name'];
-        $user -> email = $_POST['email'];
-        $user -> password = sha1($_POST['password'] . SALT);
-        $user -> firstName = $_POST['first_name'];
-        $user -> lastName = $_POST['last_name'];
-        $user -> save();
+        $user->userName = $_POST['user_name'];
+        $user->email = $_POST['email'];
+        $user->password = sha1($_POST['password'].SALT);
+        $user->firstName = $_POST['first_name'];
+        $user->lastName = $_POST['last_name'];
+//        $user->
+        $user->save();
         header('location: /login.php');  
     }
 }
@@ -55,29 +56,29 @@ if(!empty($_POST['submit'])) {
    <form method="post">
        <div>
            <p>Логин:</p>
-           <input type="text" name="user_name" id="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
+           <input type="text" name="user_name" id="user_name" required value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
            <span id="username_error"></span>
        </div>
        <div>
            <p>E-mail:</p>
-           <input type="email" name="email" id="email" value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>">
+           <input type="email" name="email" id="email" required value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>">
            <span id="email_error"></span>
        </div>
        <div>
            <p>Имя:</p>
-           <input type="text" name="first_name" value="<?= (!empty($_POST['first_name']) ? $_POST['first_name']: ''); ?>">
+           <input type="text" name="first_name" required value="<?= (!empty($_POST['first_name']) ? $_POST['first_name']: ''); ?>">
        </div>
        <div>
            <p>Фамилия:</p>
-           <input type="text" name="last_name" value="<?= (!empty($_POST['last_name']) ? $_POST['last_name']: ''); ?>">
+           <input type="text" name="last_name" required value="<?= (!empty($_POST['last_name']) ? $_POST['last_name']: ''); ?>">
        </div>
        <div>
            <p>Пароль:</p>
-           <input type="password" name="password" value="">
+           <input type="password" name="password" required value="">
        </div>
        <div>
            <p>Повторите пароль:</p>
-           <input type="password" name="confirm_password" value="">
+           <input type="password" name="confirm_password" required value="">
        </div>
        <div>
             <br>

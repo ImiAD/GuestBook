@@ -27,7 +27,7 @@ class User extends DB
     public function find($id)
     {
         $stmt = $this -> conn -> prepare('SELECT * FROM users WHERE id = :id');
-        $stmt -> execute(['id' => $this -> id]);
+        $stmt -> execute(['id' => $id]);
         $user = $stmt -> fetch(PDO::FETCH_LAZY);
         if(!empty($user)) {
             $this -> id = $id;
@@ -57,4 +57,27 @@ class User extends DB
         else return false;
     }
 
+    public function getUserName($userName)
+    {
+        $stmt = $this -> conn -> prepare('SELECT username FROM users WHERE username = :username');
+        $stmt -> execute(['username' => $userName]);
+        $user = $stmt -> fetch(PDO::FETCH_LAZY);
+        if (!empty($user -> username)) {
+            return $user -> username;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getEmail($email)
+    {
+        $stmt = $this -> conn -> prepare('SELECT email FROM users WHERE email = :email');
+        $stmt -> execute(['email' => $email]);
+        $user = $stmt -> fetch(PDO::FETCH_LAZY);
+        if (!empty($user -> email)) {
+            return $user -> email;
+        } else {
+            return 0;
+        }
+    }
 }

@@ -48,4 +48,24 @@ class Validator
             return $this -> errors[] = $name . " слишком короткий! " . $int . " минимальное количество символов!";
         }
     }
+
+    public function isUsernameAvailable($userName)
+    {
+        $isExist = $this -> _db -> getUserName($userName);
+        if(!$isExist) {
+            return false;
+        } else {
+            return $this -> errors = $userName." не доступен для использования!";
+        }
+    }
+
+    public function isEmailAvailable($email)
+    {
+        $isExist = $this -> _db -> getEmail($email);
+        if(!$isExist) {
+            return false;
+        } else {
+            return $this -> errors = $email." не доступен для использования!";
+        }
+    }
 }

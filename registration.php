@@ -55,11 +55,13 @@ if(!empty($_POST['submit'])) {
    <form method="post">
        <div>
            <p>Логин:</p>
-           <input type="text" name="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
+           <input type="text" name="user_name" id="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
+           <span id="username_error"></span>
        </div>
        <div>
            <p>E-mail:</p>
-           <input type="email" name="email" value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>">
+           <input type="email" name="email" id="email" value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>">
+           <span id="email_error"></span>
        </div>
        <div>
            <p>Имя:</p>
@@ -79,7 +81,7 @@ if(!empty($_POST['submit'])) {
        </div>
        <div>
             <br>
-            <div><input type="submit" name="submit" value="Зарегистрироваться"></div>
+            <div><input type="submit" name="submit" id="submit" value="Зарегистрироваться"></div>
             <br>
             <div><input type="submit" name="login" value="Авторизация"></div>
        </div>

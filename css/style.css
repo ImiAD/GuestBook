@@ -1,0 +1,39 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+.comments {
+    padding-top: 7px;
+}
+
+.input {
+    border-radius: 5px;
+}
+
+.text-error {
+    color: darkred;
+    font-weight: bold;
+}
+
+#wrapper {
+    margin: 0px auto;
+    padding: 10px;
+    text-align: justify;
+}
+
+#wrapper > div {
+    margin-bottom: 15px;
+}
+
+#wrapper p {
+    margin-bottom: 5px;
+}
+
+textarea.form-control {
+    width: 100%;
+    padding: 5px 10px;
+    min-height: 200px;
+    resize: vertical;
+    text-align: justify;
+}

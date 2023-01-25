@@ -32,7 +32,6 @@ if(!empty($_POST['submit'])) {
         $user->lastName = $_POST['last_name'];
         $user->ip = $_SERVER['SERVER_ADDR'];
         $user->browser = $_SERVER['HTTP_USER_AGENT'];
-        $user->homePage = $_POST['home_page'];
         $user->save();
         header('location: /login.php');  
     }
@@ -45,48 +44,50 @@ if(!empty($_POST['submit'])) {
 <html lang="ru">
 <head>
    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
    <title>Гостевая книга</title>
 </head>
-<body>
-<h1>Страница регистрации</h1>
+<body id="wrapper" style="max-width: 920px; width: 100%;" class="container text-center">
+<h1><em>Страница регистрации</em></h1>
 <div>
-    <div>
+    <div  class="text-error">
         <?php foreach ($errors as $error): ?>
             <p><?= $error; ?></p>
             <?php endforeach; ?>
         </div>
    <form method="post">
        <div>
-           <p>Логин:</p>
-           <input type="text" name="user_name" id="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
+           <p>Ваш логин:</p>
+           <input type="text" name="user_name" id="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>" class="input">
            <span id="username_error"></span>
        </div>
        <div>
-           <p>E-mail:</p>
-           <input type="email" name="email" id="email" value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>">
+           <p>Ваш e-mail:</p>
+           <input type="email" name="email" id="email" value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>" class="input">
            <span id="email_error"></span>
        </div>
        <div>
-           <p>Имя:</p>
-           <input type="text" name="first_name" value="<?= (!empty($_POST['first_name']) ? $_POST['first_name']: ''); ?>">
+           <p>Ваше имя:</p>
+           <input type="text" name="first_name" value="<?= (!empty($_POST['first_name']) ? $_POST['first_name']: ''); ?>" class="input">
        </div>
        <div>
-           <p>Фамилия:</p>
-           <input type="text" name="last_name"  value="<?= (!empty($_POST['last_name']) ? $_POST['last_name']: ''); ?>">
+           <p>Ваша фамилия:</p>
+           <input type="text" name="last_name" value="<?= (!empty($_POST['last_name']) ? $_POST['last_name']: ''); ?>" class="input">
        </div>
        <div>
-           <p>Пароль:</p>
-           <input type="password" name="password" value="">
+           <p>Ваш пароль:</p>
+           <input type="password" name="password" value="" class="input">
        </div>
        <div>
-           <p>Повторите пароль:</p>
-           <input type="password" name="confirm_password" value="">
+           <p>Повторите Ваш пароль:</p>
+           <input type="password" name="confirm_password" value="" class="input">
        </div>
        <div>
             <br>
-            <div><input type="submit" name="submit" id="submit" value="Зарегистрироваться"></div>
+            <div><input type="submit" name="submit" id="submit" value="Зарегистрироваться" class="btn btn-success col-3"></div>
             <br>
-            <div><input type="submit" name="login" value="Авторизация"></div>
+            <div><input type="submit" name="login" value="Авторизация" class="btn btn-primary col-3"></div>
        </div>
    </form>
 </div>

@@ -10,11 +10,10 @@ class User extends DB
     public $lastName;
     public $ip;
     public $browser;
-    public $homePage;
     public function save()
     {
-        $stmt = $this->conn->prepare('INSERT INTO users(`username`, `email`, `password`, `first_name`, `last_name`, `ip`, `browser`, `home_page`)
-                                            VALUES (:username, :email, :password, :first_name, :last_name, :ip, :browser, :home_page)');
+        $stmt = $this->conn->prepare('INSERT INTO users(`username`, `email`, `password`, `first_name`, `last_name`, `ip`, `browser`)
+                                            VALUES (:username, :email, :password, :first_name, :last_name, :ip, :browser)');
         $stmt->execute([
             'username' => $this->userName,
             'email' => $this->email,
@@ -23,7 +22,6 @@ class User extends DB
             'last_name' => $this->lastName,
             'ip' => $this->ip,
             'browser' => $this->browser,
-            'home_page' => $this->homePage,
         ]);
         $this->id = $this->conn->lastInsertId();
         return $this->id;
@@ -59,7 +57,9 @@ class User extends DB
             $this->lastName = $user->last_name;
             return $this;
         }
-        else return false;
+        else {
+            return false;
+        }
     }
 
     public function getUserName($userName)

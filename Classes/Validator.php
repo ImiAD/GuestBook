@@ -12,10 +12,11 @@ class Validator
     public function checkEmpty($name, $value)
     {
         $name = ucfirst(str_replace("_", " ", $name));
-        if (empty($value))
-        {
+        if (empty($value)) {
             return $this->errors[] = "Пожалустай, заполните поле ". $name;
-        } else { return 0;}
+        } else {
+            return 0;
+        }
     }
     public function checkMatch($name1, $value1, $name2, $value2)
     {

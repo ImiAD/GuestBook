@@ -16,9 +16,9 @@ if(!empty($_POST['exit'])) {
 }
 
 if(!empty($_POST['clear'])) {
-   $cleaning = new Comment();
-   $cleaning -> userId = $_SESSION['user_id'];
-   $cleaning -> clean();
+   $cleaning         = new Comment();
+   $cleaning->userId = $_SESSION['user_id'];
+   $cleaning->clean();
 }
 
 if (!empty($_POST['save'])){
@@ -28,30 +28,13 @@ if (!empty($_POST['save'])){
 }
 
 $comment = new Comment();
+
 if (!empty($_POST['text'])) {
-    $comment->text = $_POST['text'];
+    $comment->text   = $_POST['text'];
     $comment->userId = $_SESSION['user_id'];
     $comment->save();
 }
 $comments = $comment->findAll();
-
-$_POST['page'] = (int)$_POST['page'];
-$pageCount = (new Comment())->lenPage();
-if(empty($_POST['page'] )) {
-    $_POST['page'] = 1;
-}
-if (!empty($_POST['end'])) {
-    $_POST['page'] = (int)$pageCount;
-}
-if (!empty($_POST['beginning'])) {
-    $_POST['page'] = 1;
-}
-
-if(empty($_POST['page'])) {
-    $_POST['page'] = 1;
-}
-
-$comments = (new Comment())->pagin($_POST['page']);
 
 ?>
 
@@ -59,48 +42,43 @@ $comments = (new Comment())->pagin($_POST['page']);
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Комментарии</title>
 </head>
-<body>
+<body id="wrapper" style="max-width: 920px; width: 100%;" class="container text-center">
     <div>
-        <h1>Страница с комментариями</h1>
+        <h1><em>Страница с комментариями</em></h1>
     </div>
     <?php if(!empty($errors)):?>
             <?php foreach ($errors as $error): ?>
-                    <?= $error; ?>
+                <div class="text-error">
+                    <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?>
+                </div>
             <?php endforeach; ?>
         <?php endif;?>    
     <div>
         <form method="post">
             <div>
-                <textarea name="text" placeholder="Напишите Ваш комментарий" required></textarea>
+                <textarea name="text" placeholder="Напишите Ваш комментарий" class="form-control"></textarea>
             </div>
             <div>
                 <br>
-                <div><input type="submit" name="save" value="Сохранить"></div>
+                <div><input type="submit" name="save" value="Сохранить" class="btn btn-success col-12"></div>
                 <br>
-                <div><input type="submit" name="clear" value="Удалить"></div>
+                <div><input type="submit" name="clear" value="Удалить" class="btn btn-danger col-12"></div>
                 <br>
-                <div><input type="submit" name="exit" value="Выйти"></div>
+                <div><input type="submit" name="exit" value="Выйти" class="btn btn-dark col-12"></div>
             </div>
         </form>
     </div>
     <div>
-        <h3>Комментарии:</h3>
+        <h3><em>Комментарии:</em></h3>
         <?php foreach ($comments as $comment): ?>
         <p <?php if ($comment['user_id'] == $_SESSION['user_id']) echo 'style="font-weight: bold;"'; ?>>
-            <?= $comment['text']; ?>
-            <span>( <?= $comment['created_at']; ?> )</span></p>
+            <?= htmlspecialchars($comment['text'], ENT_QUOTES, 'UTF-8'); ?>
+            <span>( <?= htmlspecialchars($comment['created_at'], ENT_QUOTES, 'UTF-8'); ?> )</span></p>
         <?php endforeach; ?>
-        <form method="post">
-            <div  style="display: flex; justify-content: space-evenly;">
-                <p><input name="beginning" type="submit" class="btn btn-info btn-block" style="width: 50px;" value="«"></p>
-                <?php for ($i = 1; $i<=$pageCount; $i++): ?>
-                    <?php echo"<p><input name=\"page\" type=\"submit\" value=\"$i\"></p>";?>
-                <?php endfor ?>
-                <p><input name="end" type="submit" class="btn btn-info btn-block" style="width: 50px;" value="»"></p>
-            </div>
-        </form>
     </div>
 </body>
 </html>

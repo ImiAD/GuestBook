@@ -73,7 +73,7 @@ $comments = $comment->findAll();
         </form>
     </div>
     <div>
-        <h3>Комментарии:</h3>
+        <h3><em>Комментарии:</em></h3>
         <?php foreach ($comments as $comment): ?>
         <p <?php if ($comment['user_id'] == $_SESSION['user_id']) echo 'style="font-weight: bold;"'; ?>>
             <?= htmlspecialchars($comment['text'], ENT_QUOTES, 'UTF-8'); ?>

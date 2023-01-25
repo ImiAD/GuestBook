@@ -55,7 +55,7 @@ $comments = $comment -> findAll();
     <div>
         <form method="post">
             <div>
-                <textarea name="text" placeholder="Напишите Ваш комментарий" require=""></textarea>
+                <textarea name="text" placeholder="Напишите Ваш комментарий"></textarea>
             </div>
             <div>
                 <br>

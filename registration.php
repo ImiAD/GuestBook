@@ -14,6 +14,9 @@ if (!empty($_POST['login'])) {
 $errors = [];
 if(!empty($_POST['submit'])) {
     $validator = new Validator(new DB());
+    foreach ($_POST as $key => $value) {
+        $validator->checkEmpty($key, $value);
+    }
     $validator->checkMaxLen('user_name', $_POST['user_name'], 'users', 'username');
     $validator->checkMaxLen('first_name', $_POST['first_name'], 'users', 'first_name');
     $validator->checkMaxLen('last_name', $_POST['last_name'], 'users', 'last_name');
@@ -55,33 +58,29 @@ if(!empty($_POST['submit'])) {
    <form method="post">
        <div>
            <p>Логин:</p>
-           <input type="text" name="user_name" id="user_name" required value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
+           <input type="text" name="user_name" id="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>">
            <span id="username_error"></span>
        </div>
        <div>
            <p>E-mail:</p>
-           <input type="email" name="email" id="email" required value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>">
+           <input type="email" name="email" id="email" value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>">
            <span id="email_error"></span>
        </div>
        <div>
            <p>Имя:</p>
-           <input type="text" name="first_name" required value="<?= (!empty($_POST['first_name']) ? $_POST['first_name']: ''); ?>">
+           <input type="text" name="first_name" value="<?= (!empty($_POST['first_name']) ? $_POST['first_name']: ''); ?>">
        </div>
        <div>
            <p>Фамилия:</p>
-           <input type="text" name="last_name" required value="<?= (!empty($_POST['last_name']) ? $_POST['last_name']: ''); ?>">
-       </div>
-       <div>
-           <p>Домашняя страница:</p>
-           <input type="text" name="home_page" value="">
+           <input type="text" name="last_name"  value="<?= (!empty($_POST['last_name']) ? $_POST['last_name']: ''); ?>">
        </div>
        <div>
            <p>Пароль:</p>
-           <input type="password" name="password" required value="">
+           <input type="password" name="password" value="">
        </div>
        <div>
            <p>Повторите пароль:</p>
-           <input type="password" name="confirm_password" required value="">
+           <input type="password" name="confirm_password" value="">
        </div>
        <div>
             <br>

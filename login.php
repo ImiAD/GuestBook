@@ -14,16 +14,20 @@ if(!empty($_SESSION['user_id'])) {
 }
 
 $errors = [];
+
 if(!empty($_POST)) {
     if (empty($_POST['user_name'])) {
         $errors[] = 'Введите, пожалуйста, Ваш логин или Email!';
     }
+
     if (empty($_POST['password'])) {
         $errors[] = 'Введите, пожалуйста, Ваш пароль!';
     }
+
     if(empty($errors) and !empty($_POST['login'])) {
         $user = new User();
         $user = $user->checkLogin($_POST['user_name'], sha1($_POST['password'].SALT));
+
         if (!empty($user->id)) {
             $_SESSION['user_id'] = $user->id;
             header('location: /index.php');

@@ -16,9 +16,9 @@ if(!empty($_POST['exit'])) {
 }
 
 if(!empty($_POST['clear'])) {
-   $cleaning = new Comment();
-   $cleaning -> userId = $_SESSION['user_id'];
-   $cleaning -> clean();
+   $cleaning         = new Comment();
+   $cleaning->userId = $_SESSION['user_id'];
+   $cleaning->clean();
 }
 
 if (!empty($_POST['save'])){
@@ -28,12 +28,13 @@ if (!empty($_POST['save'])){
 }
 
 $comment = new Comment();
+
 if (!empty($_POST['text'])) {
-    $comment -> text = $_POST['text'];
-    $comment -> userId = $_SESSION['user_id'];
-    $comment -> save();
+    $comment->text   = $_POST['text'];
+    $comment->userId = $_SESSION['user_id'];
+    $comment->save();
 }
-$comments = $comment -> findAll();
+$comments = $comment->findAll();
 
 ?>
 

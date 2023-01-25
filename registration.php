@@ -12,26 +12,30 @@ if (!empty($_POST['login'])) {
 }
 
 $errors = [];
+
 if(!empty($_POST['submit'])) {
     $validator = new Validator(new DB());
+
     foreach ($_POST as $key => $value) {
         $validator->checkEmpty($key, $value);
     }
+
     $validator->checkMaxLen('user_name', $_POST['user_name'], 'users', 'username');
     $validator->checkMaxLen('first_name', $_POST['first_name'], 'users', 'first_name');
     $validator->checkMaxLen('last_name', $_POST['last_name'], 'users', 'last_name');
     $validator->checkMinLen('password', $_POST['password'], MINPASSWORD);
     $validator->checkMatch('password', $_POST['password'], 'confirm_password', $_POST['confirm_password']);
     $errors = $validator->errors;
+
     if (empty($errors)) {
-        $user = new User();
-        $user->userName = $_POST['user_name'];
-        $user->email = $_POST['email'];
-        $user->password = sha1($_POST['password'] . SALT);
+        $user            = new User();
+        $user->userName  = $_POST['user_name'];
+        $user->email     = $_POST['email'];
+        $user->password  = sha1($_POST['password'].SALT);
         $user->firstName = $_POST['first_name'];
-        $user->lastName = $_POST['last_name'];
-        $user->ip = $_SERVER['SERVER_ADDR'];
-        $user->browser = $_SERVER['HTTP_USER_AGENT'];
+        $user->lastName  = $_POST['last_name'];
+        $user->ip        = $_SERVER['SERVER_ADDR'];
+        $user->browser   = $_SERVER['HTTP_USER_AGENT'];
         $user->save();
         header('location: /login.php');  
     }

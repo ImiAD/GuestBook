@@ -1,8 +1,8 @@
 <?php
 require_once ("config.php");
-$data = json_decode(file_get_contents('php://input'), true);
-$cmd = $data['cmd'];
-$value = $data['value'];
+$data     = json_decode(file_get_contents('php://input'), true);
+$cmd      = $data['cmd'];
+$value    = $data['value'];
 $response = ['success' => 0];
 
 if(!empty($cmd) && !empty($value))

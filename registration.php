@@ -57,7 +57,7 @@ if(!empty($_POST['submit'])) {
 <div>
     <div  class="text-error">
         <?php foreach ($errors as $error): ?>
-            <p><?= $error; ?></p>
+            <p><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p>
             <?php endforeach; ?>
         </div>
    <form method="post">

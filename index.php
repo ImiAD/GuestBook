@@ -53,7 +53,7 @@ $comments = $comment->findAll();
     <?php if(!empty($errors)):?>
             <?php foreach ($errors as $error): ?>
                 <div class="text-error">
-                    <?= $error; ?>
+                    <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?>
                 </div>
             <?php endforeach; ?>
         <?php endif;?>    
@@ -76,8 +76,8 @@ $comments = $comment->findAll();
         <h3>Комментарии:</h3>
         <?php foreach ($comments as $comment): ?>
         <p <?php if ($comment['user_id'] == $_SESSION['user_id']) echo 'style="font-weight: bold;"'; ?>>
-            <?= $comment['text']; ?>
-            <span>( <?= $comment['created_at']; ?> )</span></p>
+            <?= htmlspecialchars($comment['text'], ENT_QUOTES, 'UTF-8'); ?>
+            <span>( <?= htmlspecialchars($comment['created_at'], ENT_QUOTES, 'UTF-8'); ?> )</span></p>
         <?php endforeach; ?>
     </div>
 </body>

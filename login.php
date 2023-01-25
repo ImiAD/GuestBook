@@ -52,7 +52,7 @@ if(!empty($_POST)) {
     <div>
         <?php foreach ($errors as $error): ?>
             <div class="text-error">
-                <?= $error; ?>
+                <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?>
             </div>
         <?php endforeach; ?>
     </div>

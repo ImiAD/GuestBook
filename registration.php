@@ -63,21 +63,21 @@ if(!empty($_POST['submit'])) {
    <form method="post">
        <div>
            <p>Ваш логин:</p>
-           <input type="text" name="user_name" id="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>" class="input">
+           <input type="text" name="user_name" id="user_name" value="<?= htmlspecialchars(!empty($_POST['user_name']) ? $_POST['user_name']: '', ENT_QUOTES, 'UTF-8'); ?>" class="input">
            <span id="username_error"></span>
        </div>
        <div>
            <p>Ваш e-mail:</p>
-           <input type="email" name="email" id="email" value="<?= (!empty($_POST['email']) ? $_POST['email']: ''); ?>" class="input">
+           <input type="email" name="email" id="email" value="<?= htmlspecialchars(!empty($_POST['email']) ? $_POST['email']: '', ENT_QUOTES, 'UTF-8'); ?>" class="input">
            <span id="email_error"></span>
        </div>
        <div>
            <p>Ваше имя:</p>
-           <input type="text" name="first_name" value="<?= (!empty($_POST['first_name']) ? $_POST['first_name']: ''); ?>" class="input">
+           <input type="text" name="first_name" value="<?= htmlspecialchars(!empty($_POST['first_name']) ? $_POST['first_name']: '', ENT_QUOTES, 'UTF-8'); ?>" class="input">
        </div>
        <div>
            <p>Ваша фамилия:</p>
-           <input type="text" name="last_name" value="<?= (!empty($_POST['last_name']) ? $_POST['last_name']: ''); ?>" class="input">
+           <input type="text" name="last_name" value="<?= htmlspecialchars(!empty($_POST['last_name']) ? $_POST['last_name']: '', ENT_QUOTES, 'UTF-8'); ?>" class="input">
        </div>
        <div>
            <p>Ваш пароль:</p>

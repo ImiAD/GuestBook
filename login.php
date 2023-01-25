@@ -61,7 +61,7 @@ if(!empty($_POST)) {
             <div>
                 <p>Введите логин или E-mail:</p>
                 <div>
-                    <input type="text" name="user_name" value="<?= (!empty($_POST['user_name']) ? $_POST['user_name']: ''); ?>" class="input"
+                    <input type="text" name="user_name" value="<?= htmlspecialchars(!empty($_POST['user_name']) ? $_POST['user_name']: '', ENT_QUOTES, 'UTF-8'); ?>" class="input"
                 </div>
             </div>
             <div>
